@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJourneysTable extends Migration
+class CreateSearchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateJourneysTable extends Migration
      */
     public function up()
     {
-        Schema::create('journeys', function (Blueprint $table) {
+        Schema::create('searches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users');
         });
     }
 
@@ -32,6 +26,6 @@ class CreateJourneysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('journeys');
+        Schema::dropIfExists('searches');
     }
 }

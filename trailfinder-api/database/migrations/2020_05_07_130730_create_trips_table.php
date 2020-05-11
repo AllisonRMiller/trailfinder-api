@@ -15,7 +15,7 @@ class CreateTripsTable extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->varchar('name');
+            $table->string('name');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('journey_id');
             $table->timestamps();
