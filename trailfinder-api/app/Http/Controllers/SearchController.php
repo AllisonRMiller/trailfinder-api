@@ -5,15 +5,33 @@ namespace App\Http\Controllers;
 use App\Search;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\Mime\Header\Headers;
+use Throwable;
 
 
-
+//return response()->json(['error' => $e->getMessage()], 500);
 
 class SearchController extends Controller
 {
 
     public function search(Request $request){
-        $response = Http::get('https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=200747499-3d3cab16ebe912a88d76d82693eee11c');
+        // Http::fake([
+        //     'www.hikingproject.com/*' => Http::response( ['Headers'])
+        // ]);
+        // dd($request);
+        $lat=$request->input('lat');
+        $lng=$request->input('lng'); 
+        try{
+            
+            $response = Http::get(
+                'https://www.hikingproject.com/data/get-trails?lat=' . $lat . '&lon='. $lng .'&maxDistance=10&key=200747499-3d3cab16ebe912a88d76d82693eee11c'
+            );
+        }
+        catch (Throwable $e) {
+            $response->throw();
+            response()->json(['error' => $e-> getMessage()]);
+        }
+        return $response;
     }
     /**
      * Display a listing of the resource.
