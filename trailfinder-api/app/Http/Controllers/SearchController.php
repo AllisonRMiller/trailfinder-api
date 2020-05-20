@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Search;
+use App\RecentCalls;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\Mime\Header\Headers;
@@ -31,6 +32,9 @@ class SearchController extends Controller
             $response->throw();
             response()->json(['error' => $e-> getMessage()]);
         }
+        // $response->RecentCalls::create([
+            
+        // ]);
         return $response;
     }
     /**

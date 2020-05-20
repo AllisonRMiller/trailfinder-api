@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Journey extends Model
 {
-    public function user(){
+    public function users(){
         return $this->belongsTo('App\User');
     }
 }

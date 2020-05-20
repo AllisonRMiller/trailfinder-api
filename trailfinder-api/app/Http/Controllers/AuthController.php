@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Trip;
+use App\Journey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     protected function generateAccessToken($user)
     {
-        $token = $user->createToken($user->email.'-'.now());
+        $token = $user->createToken($user->email . '-' . now());
 
         return $token->accessToken;
     }
@@ -18,39 +21,61 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required', 
-            'email' => 'required|email', 
+            'name' => 'required',
+            'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
 
         $user = User::create([
-            'name' => $request->name, 
-            'email' => $request->email, 
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-
-        return response()->json($user);
-    }
+        $token = $user->createToken($user->email . '-' . now());
 
 
-public function login(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email|exists:users,email', 
-        'password' => 'required'
-    ]);
-
-    if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password]) ) {
-        $user = Auth::user();
-
-        $token = $user->createToken($user->email.'-'.now());
-
-        return response()->json([
-            'token' => $token->accessToken
+        $journey = Journey::create([
+            'name' => "Journey Zero",
+            'user_id' => $user->id
         ]);
+
+        $trip = Trip::create([
+            'name' => "Saved Trails",
+            'journey_id' => $journey->id,
+            'user_id' => $user->id
+        ]);
+
+        // $user->trips()->save($trip);
+
+        return response()->json(
+            [
+                'token' => $token->accessToken,
+                'user' => $user,
+                'allTrips' => $trip,
+                'allJourneys' => $journey
+
+            ]
+        );
     }
-}
 
 
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            $token = $user->createToken($user->email . '-' . now());
+
+            return response()->json([
+                'token' => $token->accessToken,
+                'user' => $user
+            ]);
+        }
+    }
 }

@@ -16,6 +16,7 @@ class CreateRecentCallsTable extends Migration
         Schema::create('recent_calls', function (Blueprint $table) {
             $table->id();
             $table->integer('api_id');
+            $table->json('data');
             $table->timestamps();
 
         });

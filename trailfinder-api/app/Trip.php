@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trip extends Model
 {
-     public function user(){
+     public function users(){
         return $this->belongsTo('App\User');
     }
-    public function journey(){
+    public function journeys(){
         return $this->belongsTo('App\Journey');
+    }
+
+    public function trails(){
+        return $this->belongsToMany('App\Trail', 'Trail_Trip');
     }
 }
