@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Trail;
+use App\TrailTrip;
 use Illuminate\Http\Request;
 
-class TrailController extends Controller
+class TrailTripController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,9 +24,7 @@ class TrailController extends Controller
      */
     public function create()
     {
-        //check to see if trail is already in db
-
-        //add link regardless
+        //
     }
 
     /**
@@ -37,21 +35,16 @@ class TrailController extends Controller
      */
     public function store(Request $request)
     {
-        $trail = new Trail();
-        $trail->api_id = request('id');
-        $trail->save();
-    
-        return $trail;
+        //
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Trail  $trail
+     * @param  \App\TrailTrip  $trailTrip
      * @return \Illuminate\Http\Response
      */
-    public function show(Trail $trail)
+    public function show(TrailTrip $trailTrip)
     {
         //
     }
@@ -59,10 +52,10 @@ class TrailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Trail  $trail
+     * @param  \App\TrailTrip  $trailTrip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trail $trail)
+    public function edit(TrailTrip $trailTrip)
     {
         //
     }
@@ -71,10 +64,10 @@ class TrailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Trail  $trail
+     * @param  \App\TrailTrip  $trailTrip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Trail $trail)
+    public function update(Request $request, TrailTrip $trailTrip)
     {
         //
     }
@@ -82,10 +75,10 @@ class TrailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Trail  $trail
+     * @param  \App\TrailTrip  $trailTrip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trail $trail)
+    public function destroy(TrailTrip $trailTrip)
     {
         //
     }

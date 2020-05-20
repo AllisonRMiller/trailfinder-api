@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Trip;
+use App\Journey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,10 +34,27 @@ class AuthController extends Controller
         ]);
         $token = $user->createToken($user->email . '-' . now());
 
+
+        $journey = Journey::create([
+            'name' => "Journey Zero",
+            'user_id' => $user->id
+        ]);
+
+        $trip = Trip::create([
+            'name' => "Saved Trails",
+            'journey_id' => $journey->id,
+            'user_id' => $user->id
+        ]);
+
+        // $user->trips()->save($trip);
+
         return response()->json(
             [
                 'token' => $token->accessToken,
-                'user' => $user
+                'user' => $user,
+                'allTrips' => $trip,
+                'allJourneys' => $journey
+
             ]
         );
     }
