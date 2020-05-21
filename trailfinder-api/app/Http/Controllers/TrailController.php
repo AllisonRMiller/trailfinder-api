@@ -37,11 +37,13 @@ class TrailController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $trail = new Trail();
-        $trail->api_id = request('id');
+        $trail->api_id = $request('api_id');
         $trail->save();
-    
-        return $trail;
+        $response = "Trail saved!";
+        return response($response, 200);
     }
 
 

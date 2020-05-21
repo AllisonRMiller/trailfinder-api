@@ -17,10 +17,11 @@ Route::post('search','SearchController@search');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
-Route::post('trail', 'TrailController@store');
 
 Route::middleware('auth:api')->group(function() {
-
+    Route::post('trail', 'TrailController@store');
+    Route::post('logout', 'AuthController@logout');
+    
     Route::get('user/{userId}/detail', 'UserController@show');
 });
 Route::middleware('auth:api')->get('/user', function (Request $request) {
