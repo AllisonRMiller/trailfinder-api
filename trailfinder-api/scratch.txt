@@ -2,8 +2,12 @@
 
 gcloud sql instances describe trailfinderdb | grep connectionName
 
+./cloud_sql_proxy -instances=YOUR_CONNECTION_NAME=tcp:3306
+
 gcloud sql databases create laravel --instance=trailfinderdb
 
+
+gcloud sql instances describe trailfinderdb | grep connectionName
 
 env mods
 local:
