@@ -16,6 +16,9 @@ class CreateTrailsTable extends Migration
         Schema::create('trails', function (Blueprint $table) {
             $table->id();
             $table->integer('api_id');
+            $table->string('name');
+            $table->string('stars');
+            $table->string('difficulty');
             $table->timestamps();
         });
     }

@@ -14,6 +14,8 @@ class TrailCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'api_id' => $request->data->api_id
+        ];
     }
 }

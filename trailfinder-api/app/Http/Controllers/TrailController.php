@@ -38,10 +38,20 @@ class TrailController extends Controller
     public function store(Request $request)
     {
         $trail = new Trail();
-        $trail->api_id = request('id');
+        $trail->api_id = $request->data('api_id');
         $trail->save();
-    
-        return $trail;
+        $response = "Trail saved!";
+        return response($response, 200);
+        // if ()
+        //check to see if trail with api_id already exists in database
+        
+        //if not add
+        //make link to trail_trips regardless
+        // $trail = new Trail();
+        // $trail->api_id = $request('api_id');
+        // $trail->save();
+        // $response = "Trail saved!";
+        // return response($response, 200);
     }
 
 

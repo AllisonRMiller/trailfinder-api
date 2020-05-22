@@ -37,6 +37,30 @@ class SearchController extends Controller
         // ]);
         return $response;
     }
+
+
+    public function singleTrail(Request $request){
+        // Http::fake([
+        //     'www.hikingproject.com/*' => Http::response( ['Headers'])
+        // ]);
+        // dd($request);
+        $id=$request->input('id');
+        try{
+            
+            $response = Http::get(
+                // 'https://www.hikingproject.com/data/get-trails?lat=' . $lat . '&lon='. $lng .'&maxDistance=10&key=200747499-3d3cab16ebe912a88d76d82693eee11c'
+                'https://www.hikingproject.com/data/get-trails-by-id?ids=' . $id . '&key=200747499-3d3cab16ebe912a88d76d82693eee11c'
+            );
+        }
+        catch (Throwable $e) {
+            $response->throw();
+            response()->json(['error' => $e-> getMessage()]);
+        }
+        // $response->RecentCalls::create([
+            
+        // ]);
+        return $response;
+    }
     /**
      * Display a listing of the resource.
      *
