@@ -10,5 +10,5 @@ class Trail extends Model
         return $this->belongsToMany('App\Trip', 'Trail_Trip');
     }
 
-    protected $fillable = ['name','api_id'];
+    protected $fillable = ['name','api_id','stars', 'difficulty'];
 }

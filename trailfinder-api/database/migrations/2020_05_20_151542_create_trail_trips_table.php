@@ -15,9 +15,9 @@ class CreateTrailTripsTable extends Migration
     {
         Schema::create('trail_trips', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('trail_id');
             $table->unsignedBigInteger('trip_id');
+            
 
             $table->foreign('trail_id')
             ->references('id')

@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('search','SearchController@search');
+Route::post('singleTrail','SearchController@singleTrail');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::post('addTrail', 'AuthController@addTrail');
+Route::post('viewSaved', 'AuthController@viewSaved');
 
 
 Route::middleware('auth:api')->group(function() {
-    Route::post('trail', 'TrailController@store');
     Route::post('logout', 'AuthController@logout');
     
     Route::get('user/{userId}/detail', 'UserController@show');
